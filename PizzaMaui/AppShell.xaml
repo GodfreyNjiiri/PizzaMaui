@@ -3,13 +3,19 @@
     x:Class="PizzaMaui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PizzaMaui"
+    xmlns:pages="clr-namespace:PizzaMaui.Pages"
     Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="DarkGoldenrod"
     Title="PizzaMaui">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        Title=""
+        ContentTemplate="{DataTemplate pages:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+    Title="Home"
+    ContentTemplate="{DataTemplate pages:HomePage}"
+    Route="HomePage" />
 
 </Shell>
