@@ -12,5 +12,14 @@
 
         public ObservableCollection<Pizza> Pizzas { get; set; }
 
+        [RelayCommand]
+        private async Task GoToAllPizzasPage(bool fromSearch = false)
+        {
+            var parameters = new Dictionary<string, object> {
+                [nameof(AllPizzasViewModel.FromSearch)] = fromSearch
+            };
+            await Shell.Current.GoToAsync(nameof(AllPizzasPage), animate: true, parameters);
+        }
+
     }
 }
