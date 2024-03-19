@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="PizzaMaui.Pages.DetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PizzaMaui.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:PizzaMaui.ViewModels"
+    xmlns:models="clr-namespace:PizzaMaui.Models"
+    mc:Ignorable="d"
+    x:DataType="vm:DetailsViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="white"
+                               StatusBarStyle="DarkContent"/>
+    </ContentPage.Behaviors>
+    
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView Padding="15">
+                <VerticalStackLayout Spacing="15">
+                    <Image Source="{Binding Pizza.Image}"
+                           HeightRequest="200"
+                           WidthRequest="200"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <Label Text="{Binding Pizza.Name}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <Grid ColumnDefinitions="*, *">
+                        <Label Grid.Column="0"
+                               Text="{Binding Pizza.Price, StringFormat='${0:N2}'}"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                            <HorizontalStackLayout Grid.Column="1"
+                                               HorizontalOptions="End"
+                                               Spacing="2"
+                                               VerticalOptions="Center">
+                                <Label  Text="4"
+                                        FontSize="18"/>
+                                <Image Source="star"
+                                       HeightRequest="20"
+                                       WidthRequest="20">
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod"/>
+                                    </Image.Behaviors>
+                                </Image>
+                            </HorizontalStackLayout>
+                    </Grid>
+
+                    <Label Text="Description"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           Margin="0,10"/>
+                    <Label FontSize="14"
+                           LineHeight="1.5"
+                           Text="Indulge in a culinary masterpiece with our classic pizza, featuring a crispy crust topped with tangy tomato sauce, gooey melted cheese, and an array of savory toppings that burst with flavor in every bite. Savor the perfect harmony of ingredients, crafted to satisfy your cravings and elevate your dining experience to new heights.
+                           
+                           Treat your taste buds to a symphony of flavors with our ASIN pizza, boasting a tantalizing blend of zesty tomato sauce, creamy mozzarella cheese, and a medley of fresh toppings, all nestled atop a perfectly baked crust. Elevate your dining experience with each savory slice, crafted to delight even the most discerning palates."/>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="DarkGoldenrod"
+                    Margin="-1"
+                    VerticalOptions="End"
+                    HeightRequest="150"
+                    Padding="15"
+                    StrokeShape="RoundRectangle 20, 20, 0, 0">
+                <Border.Shadow>
+                    <Shadow Brush="Gold"
+                            Radius="100"/>
+                </Border.Shadow>
+
+                <Grid RowDefinitions="Auto, Auto"
+                      ColumnDefinitions="*, *">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{Binding Pizza.Amount, StringFormat='${0:N2}'}"
+                           FontSize="20"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+                    <Grid Grid.Row="0"
+                          Grid.Column="1"
+                          ColumnDefinitions="50, 40, 50"
+                          HorizontalOptions="End"
+                          VerticalOptions="Center">
+                        <ImageButton Grid.Column="0"
+                                     Source="decrement"
+                                     HeightRequest="40"
+                                     WidthRequest="40"
+                                     Command="{Binding RemoveFromCartCommand}">
+                            <ImageButton.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="Gold"/>
+                            </ImageButton.Behaviors>
+                        </ImageButton>
+                        <Label Grid.Column="1"
+                               Text="{Binding Pizza.CartQuantity}"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               FontSize="25"
+                               Margin="5"/>
+
+                        <ImageButton Grid.Column="2"
+                                     Source="plus"
+                                     HeightRequest="40"
+                                     WidthRequest="40"
+                                     Command="{Binding AddToCartCommand}">
+                            <ImageButton.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="Gold"/>
+                            </ImageButton.Behaviors>
+                        </ImageButton>
+                    </Grid>
+
+                    <Button Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Text="View Cart"
+                            BackgroundColor="Goldenrod"
+                            HorizontalOptions="Center"
+                            CornerRadius="22"
+                            Padding="50,10"
+                            Margin="0,20"
+                            VerticalOptions="End"/>
+                </Grid>
+                      
+            </Border>
+            <ImageButton Source="back"
+                         VerticalOptions="Start"
+                         HorizontalOptions="Start"
+                         Margin="15"
+                         Clicked="ImageButton_Clicked">
+                <ImageButton.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -55,6 +55,10 @@
                        TextColor="Goldenrod"
                        FontSize="15"
                        Padding="10, 14"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToAllPizzasPageCommand}"
+                                          CommandParameter="{x:Boolean true}"/>
+                </Border.GestureRecognizers>
             </Border>
 
             <BoxView HeightRequest="15"
@@ -69,7 +73,12 @@
                        Text="View All"
                        HorizontalOptions="End"
                        VerticalOptions="End"
-                       TextDecorations="Underline"/>
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAllPizzasPageCommand}"
+                                              CommandParameter="{x:Boolean false}"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
 
             <FlexLayout BindableLayout.ItemsSource="{Binding Pizzas}"
@@ -122,8 +131,14 @@
                                         FontAttributes="Bold"
                                         VerticalOptions="End"
                                         HorizontalOptions="Center"
-                                        Padding="22, 0"/>
+                                        Padding="22, 0"
+                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailPageCommand}"
+                          CommandParameter="{Binding .}"/>
                             </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailPageCommand}"
+                          CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
