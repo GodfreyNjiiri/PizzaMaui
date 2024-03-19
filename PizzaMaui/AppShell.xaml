@@ -4,9 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:PizzaMaui.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Disabled"
     Shell.BackgroundColor="DarkGoldenrod"
     Title="PizzaMaui">
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="DarkGoldenrod"
+                                   StatusBarStyle="LightContent"/>
+    </Shell.Behaviors>
 
     <ShellContent
         Title=""

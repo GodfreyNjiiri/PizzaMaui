@@ -16,6 +16,8 @@ namespace PizzaMaui.ViewModels
             _pizzaService = pizzaService;
             Pizzas = new(_pizzaService.GetAllPizzas());
         }
+
+
         public ObservableCollection<Pizza> Pizzas { get; set; }
 
         [ObservableProperty]
@@ -29,11 +31,23 @@ namespace PizzaMaui.ViewModels
         {
             Pizzas.Clear();
             Searching = true;
+            await Task.Delay(2000);
             foreach (var pizza in _pizzaService.GetPizzas(searchTerm))
             {
                 Pizzas.Add(pizza);
             }
             Searching = false;
+        }
+
+        [RelayCommand]
+        private async Task GoToDetailPage(Pizza pizza)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(DetailsViewModel.Pizza)] = pizza
+
+            };
+            await Shell.Current.GoToAsync(nameof(DetailPage), animate: true, parameters);
         }
     }
 }

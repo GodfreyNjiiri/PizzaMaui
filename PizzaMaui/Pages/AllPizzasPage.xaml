@@ -21,15 +21,20 @@
     <Grid RowDefinitions="Auto, *">
 
         <SearchBar Grid.Row="0"
+                   x:Name="searchBar"
                    Placeholder="Search for pizza..."
                    PlaceholderColor="Goldenrod"
                    CancelButtonColor="Red"
                    TextColor="DarkGoldenrod"
+                   SearchCommand="{Binding SearchPizzasCommand}"
+                   SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"
+                   TextChanged="searchBar_TextChanged"
                    />
         <ScrollView Grid.Row="1"
                     Margin="5">
             <VerticalStackLayout>
-                <CollectionView ItemsSource="{Binding Pizzas}">
+                <CollectionView ItemsSource="{Binding Pizzas}"
+                                BackgroundColor="Transparent">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            ItemSpacing="10"/>
@@ -88,6 +93,10 @@
                                                        HeightRequest="30"
                                                        VerticalOptions="Center"/>
                                             </HorizontalStackLayout>
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:AllPizzasViewModel}}, Path=GoToDetailPageCommand}"
+                                                                      CommandParameter="{Binding .}"/>
+                                            </Border.GestureRecognizers>
                                         </Border>
                                         
                                     </VerticalStackLayout>
@@ -95,11 +104,44 @@
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             BackgroundColor="Green"
+                                             HeightRequest="300"
+                                             WidthRequest="300">
+                            <BoxView HeightRequest="100"
+                                     WidthRequest="100"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     BackgroundColor="Blue"/>
+                            <Label Text="No Pizzas Found"
+                                   FontSize="25"
+                                   TextColor="red"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Searching}"
+                                                 Value="True">
+                                        <Setter  Property="Text" Value="Searching for Pizza"/>
+                                    </DataTrigger>
+                                                 
+                                </Label.Triggers>
+                            </Label>
 
+
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
-
+        <ActivityIndicator Grid.RowSpan="2"
+                           IsRunning="{Binding Searching}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="DarkGoldenrod"/>
     </Grid>
 
 </ContentPage>

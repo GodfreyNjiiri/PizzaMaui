@@ -28,6 +28,7 @@ namespace PizzaMaui
             services.AddSingleton<PizzaService> ();
             services.AddSingletonWithShellRoute<HomePage, HomeViewModel>(nameof(HomePage));
             services.AddTransientWithShellRoute<AllPizzasPage, AllPizzasViewModel>(nameof(AllPizzasPage));
+            services.AddTransientWithShellRoute<DetailPage, DetailsViewModel>(nameof(DetailPage));
 
             return services;
         }

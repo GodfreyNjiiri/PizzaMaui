@@ -131,8 +131,14 @@
                                         FontAttributes="Bold"
                                         VerticalOptions="End"
                                         HorizontalOptions="Center"
-                                        Padding="22, 0"/>
+                                        Padding="22, 0"
+                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailPageCommand}"
+                          CommandParameter="{Binding .}"/>
                             </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailPageCommand}"
+                          CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
