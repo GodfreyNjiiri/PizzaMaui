@@ -129,7 +129,8 @@
                             CornerRadius="22"
                             Padding="50,10"
                             Margin="0,20"
-                            VerticalOptions="End"/>
+                            VerticalOptions="End"
+                            Command="{Binding ViewCartCommand}"/>
                 </Grid>
                       
             </Border>

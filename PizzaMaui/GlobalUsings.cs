@@ -5,3 +5,5 @@ global using PizzaMaui.Services;
 global using PizzaMaui.ViewModels;
 global using System.Collections.ObjectModel;
 global using CommunityToolkit.Mvvm.Input;
+global using CommunityToolkit.Maui.Core;
+global using CommunityToolkit.Maui.Alerts;

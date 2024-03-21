@@ -1,4 +1,6 @@
-﻿namespace PizzaMaui.ViewModels
+﻿using CommunityToolkit.Mvvm.Input;
+
+namespace PizzaMaui.ViewModels
 {
     public partial class HomeViewModel : ObservableObject
     {
