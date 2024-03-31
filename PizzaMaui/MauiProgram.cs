@@ -26,9 +26,16 @@ namespace PizzaMaui
         private static IServiceCollection AddPizzaServices(IServiceCollection services)
         {
             services.AddSingleton<PizzaService> ();
-            services.AddSingletonWithShellRoute<HomePage, HomeViewModel>(nameof(HomePage));
+            //services.AddSingletonWithShellRoute<HomePage, HomeViewModel>(nameof(HomePage));
+            services.AddSingleton<HomePage>()
+                    .AddSingleton<HomeViewModel>();
+
             services.AddTransientWithShellRoute<AllPizzasPage, AllPizzasViewModel>(nameof(AllPizzasPage));
             services.AddTransientWithShellRoute<DetailPage, DetailsViewModel>(nameof(DetailPage));
+
+            services.AddSingleton<CartViewModel>();
+            services.AddTransient<CartPage>();
+            //services.AddSingletonWithShellRoute<CartPage, CartViewModel>(nameof(CartPage));
 
             return services;
         }
