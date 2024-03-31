@@ -87,9 +87,11 @@ namespace PizzaMaui.ViewModels
         private async Task PlaceOrder()
         {
             Items.Clear();
+            CartCleared?.Invoke(this, EventArgs.Empty);
             RecalculateTotalAmount();
 
             // go to checkout page
+            await Shell.Current.GoToAsync(nameof(CheckoutPage), animate: true);
         }
     }
 }
